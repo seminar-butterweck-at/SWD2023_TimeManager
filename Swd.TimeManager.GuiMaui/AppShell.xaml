@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Swd.TimeManager.GuiMaui.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Swd.TimeManager.GuiMaui"
+    xmlns:views="clr-namespace:Swd.TimeManager.GuiMaui"
+    xmlns:vw="clr-namespace:Swd.TimeManager.GuiMaui.Views"
+    Shell.FlyoutBehavior="Disabled">
+
+
+    <TabBar>
+        <Tab Title="Overview">
+            <ShellContent ContentTemplate="{DataTemplate views:OverViewPage}" />
+        </Tab>
+        <Tab Title="Add">
+            <ShellContent ContentTemplate="{DataTemplate views:AddPage}" />
+        </Tab>
+        <Tab Title="List">
+            <ShellContent ContentTemplate="{DataTemplate views:ListPage}" />
+        </Tab>
+        <Tab Title="Project">
+            <ShellContent ContentTemplate="{DataTemplate vw:ProjectListPage}" />
+        </Tab>
+        <Tab Title="Add Project">
+            <ShellContent ContentTemplate="{DataTemplate views:AddProjectPage}" />
+        </Tab>
+        <Tab Title="Settings">
+            <ShellContent ContentTemplate="{DataTemplate views:SettingsPage}" />
+        </Tab>
+    </TabBar>
+    
+    
+    <ShellContent
+        Title="Intro"
+        ContentTemplate="{DataTemplate local:IntroPage}"
+        Route="intro" />
+
+    <!--<ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="main" />-->
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:LoginPage}"
+        Route="login" />
+
+
+
+
+
+
+
+</Shell>
