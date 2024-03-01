@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
             
          <Label Grid.Row="0" Text="Projektname" Margin="5"/>
-         <Entry Grid.Row="1" Margin="5" Text="{Binding Name, Mode=TwoWay}" />
+         <Entry Grid.Row="1" Margin="5" Text="{Binding Project.Name, Mode=TwoWay}" />
         <Button Grid.Row="2" Text="Save project" Command="{Binding SaveCommand}"  />
         <Button Grid.Row="3" Text="Cancel" Command="{Binding CancelCommand}"  />
     </Grid>

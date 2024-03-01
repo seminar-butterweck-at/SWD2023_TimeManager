@@ -7,7 +7,7 @@ public partial class ProjectEditPage : ContentPage
 	public ProjectEditPage()
 	{
 		InitializeComponent();
-     
+        //LoadProjectAsync(); Doppelter Aufruf
     }
 
 
@@ -25,7 +25,7 @@ public partial class ProjectEditPage : ContentPage
         await viewModel.LoadProjectAsync();
         await MainThread.InvokeOnMainThreadAsync(() =>
         {
-            this.editGrid.BindingContext = viewModel.Project;
+            this.BindingContext = viewModel;
         });
     }
 }
