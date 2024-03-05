@@ -1,7 +1,6 @@
 ﻿using Swd.TimeManager.GuiMaui.Model;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,10 +8,10 @@ using System.Windows.Input;
 
 namespace Swd.TimeManager.GuiMaui.ViewModel
 {
-
     [QueryProperty(nameof(ProjectId), "projectId")]
-    public class ProjectEditPageViewModel : BaseViewModel
+    public class ProjectDeletePageViewModel : BaseViewModel
     {
+
         //Fields
         private Project _project;
         private int _projectId;
@@ -41,16 +40,17 @@ namespace Swd.TimeManager.GuiMaui.ViewModel
         }
 
         //Commands
-        public ICommand SaveCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
         public ICommand CancelCommand { get; set; }
 
-        public ProjectEditPageViewModel()
+
+        public ProjectDeletePageViewModel()
         {
             _database = new TimeManagerDatabase();
 
-            SaveCommand = new Command(
+            DeleteCommand = new Command(
                 //Execute: Methode die aufgerufen wird
-                () => Save(),
+                () => Delete(),
                 //Can Execute: Methode die true/false zurücklieft
                 () => IsActionPossible()
                 );
@@ -63,10 +63,10 @@ namespace Swd.TimeManager.GuiMaui.ViewModel
 
         }
 
-        public async Task Save()
+        public async Task Delete()
         {
             TimeManagerDatabase database = new TimeManagerDatabase();
-            await database.SaveProjectAsync(this.Project);
+            await database.DeleteProjectAsync(this.Project);
             await Shell.Current.GoToAsync("..");
         }
 
@@ -87,5 +87,6 @@ namespace Swd.TimeManager.GuiMaui.ViewModel
 
             return isActionPossible;
         }
+
     }
 }

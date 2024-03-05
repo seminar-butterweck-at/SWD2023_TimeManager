@@ -6,11 +6,12 @@
     xmlns:local="clr-namespace:Swd.TimeManager.GuiMaui"
     xmlns:views="clr-namespace:Swd.TimeManager.GuiMaui"
     xmlns:vw="clr-namespace:Swd.TimeManager.GuiMaui.Views"
+    xmlns:res="clr-namespace:Swd.TimeManager.GuiMaui.Resources.Strings"
     Shell.FlyoutBehavior="Disabled">
 
 
     <TabBar>
-        <Tab Title="Overview">
+        <Tab Title="{x:Static res:AppResources.MenTitleOverview}">
             <ShellContent ContentTemplate="{DataTemplate views:OverViewPage}" />
         </Tab>
         <Tab Title="Add">
@@ -19,13 +20,19 @@
         <Tab Title="List">
             <ShellContent ContentTemplate="{DataTemplate views:ListPage}" />
         </Tab>
-        <Tab Title="Project">
+        <Tab Title="{x:Static res:AppResources.MenTitleProject}">
             <ShellContent ContentTemplate="{DataTemplate vw:ProjectListPage}" />
         </Tab>
-        <Tab Title="Add Project">
-            <ShellContent ContentTemplate="{DataTemplate views:AddProjectPage}" />
+        <Tab Title="{x:Static res:AppResources.MenTitleTaks}">
+            <ShellContent ContentTemplate="{DataTemplate vw:TaskListPage}" />
         </Tab>
-        <Tab Title="Settings">
+        <Tab Title="{x:Static res:AppResources.MenTitlePerson}">
+            <ShellContent ContentTemplate="{DataTemplate vw:PersonListPage}" />
+        </Tab>
+        <!--<Tab Title="Add Project">
+            <ShellContent ContentTemplate="{DataTemplate views:AddProjectPage}" />
+        </Tab>-->
+        <Tab Title="{x:Static res:AppResources.MenTitleSettings}">
             <ShellContent ContentTemplate="{DataTemplate views:SettingsPage}" />
         </Tab>
     </TabBar>

@@ -66,26 +66,31 @@ namespace Swd.TimeManager.GuiMaui.ViewModel
         {
             await Shell.Current.GoToAsync("projectadd");
         }
+
+
         public async Task Edit(object projectId)
         {
             if(int.TryParse(projectId.ToString(), out int id))
             {
-
                 var navigationParameter = new Dictionary<string, object>
                 {
                     {"projectId", id }
                 };                    ;
                 await Shell.Current.GoToAsync("projectedit", navigationParameter);
             }
-
-
-
-
-            
         }
+
+
         public async Task Delete(object projectId)
         {
-            await Shell.Current.GoToAsync("projectdelete");
+            if (int.TryParse(projectId.ToString(), out int id))
+            {
+                var navigationParameter = new Dictionary<string, object>
+                {
+                    {"projectId", id }
+                }; ;
+                await Shell.Current.GoToAsync("projectdelete", navigationParameter);
+            }
         }
 
         private bool IsActionPossible()
