@@ -158,6 +158,9 @@
   <data name="MenTitleTaks" xml:space="preserve">
     <value>Tasks</value>
   </data>
+  <data name="MenTitleTimeRecords" xml:space="preserve">
+    <value>Timerecords</value>
+  </data>
   <data name="PageTitleLogin" xml:space="preserve">
     <value>Login</value>
   </data>
@@ -175,6 +178,9 @@
   </data>
   <data name="PageTitleTaskList" xml:space="preserve">
     <value>Tasks</value>
+  </data>
+  <data name="PageTitleTimeRecordList" xml:space="preserve">
+    <value>Timerecords</value>
   </data>
   <data name="SubTitle" xml:space="preserve">
     <value>Record your time</value>

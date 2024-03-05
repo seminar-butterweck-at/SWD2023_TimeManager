@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Swd.TimeManager.GuiMaui.Views.TimeRecordListPage"
+             xmlns:viewmodel="clr-namespace:Swd.TimeManager.GuiMaui.ViewModel"
+             xmlns:res="clr-namespace:Swd.TimeManager.GuiMaui.Resources.Strings"
+             Title="{x:Static res:AppResources.PageTitleTimeRecordList}">
+
+            <ContentPage.BindingContext>
+                <viewmodel:TimeRecordListPageViewModel/>
+            </ContentPage.BindingContext>
+
+            <ContentPage.ToolbarItems>
+                <ToolbarItem Text="{x:Static res:AppResources.btnAdd}" Command="{Binding AddCommand}" IconImageSource="add.png" />
+            </ContentPage.ToolbarItems>
+
+
+        <ListView  x:Name="lstTimeRecords" ItemsSource="{Binding TimeRecordList}" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        
+                        <ViewCell.ContextActions>
+                        <MenuItem Text="{x:Static res:AppResources.btnEdit}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TimeRecordListPageViewModel}},Path=EditCommand}" CommandParameter="{Binding Id}" />
+                        <MenuItem Text="{x:Static res:AppResources.btnDelete}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TimeRecordListPageViewModel}},Path=DeleteCommand}" CommandParameter="{Binding Id}" />
+                        </ViewCell.ContextActions>
+                        
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="50*" />
+                                <ColumnDefinition Width="75" />
+                                <ColumnDefinition Width="120"  />
+                                <ColumnDefinition Width="120" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Id}" IsVisible="true" />
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Date}" />
+                        <Button Grid.Row="0" Grid.Column="3" MinimumWidthRequest="100" MaximumWidthRequest="120" ImageSource="edit.png" Text="{x:Static res:AppResources.btnEdit}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TimeRecordListPageViewModel}},Path=EditCommand}" CommandParameter="{Binding Id}" />
+                        <Button Grid.Row="0" Grid.Column="4" MinimumWidthRequest="100" MaximumWidthRequest="120" ImageSource="delete.png" Text="{x:Static res:AppResources.btnDelete}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TimeRecordListPageViewModel}},Path=DeleteCommand}" CommandParameter="{Binding Id}"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+</ContentPage>

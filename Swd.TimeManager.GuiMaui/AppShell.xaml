@@ -14,11 +14,8 @@
         <Tab Title="{x:Static res:AppResources.MenTitleOverview}">
             <ShellContent ContentTemplate="{DataTemplate views:OverViewPage}" />
         </Tab>
-        <Tab Title="Add">
-            <ShellContent ContentTemplate="{DataTemplate views:AddPage}" />
-        </Tab>
-        <Tab Title="List">
-            <ShellContent ContentTemplate="{DataTemplate views:ListPage}" />
+        <Tab Title="{x:Static res:AppResources.MenTitleTimeRecords}">
+            <ShellContent ContentTemplate="{DataTemplate vw:TimeRecordListPage}" />
         </Tab>
         <Tab Title="{x:Static res:AppResources.MenTitleProject}">
             <ShellContent ContentTemplate="{DataTemplate vw:ProjectListPage}" />

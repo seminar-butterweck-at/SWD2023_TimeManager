@@ -13,8 +13,6 @@ namespace Swd.TimeManager.Model
         public DateTime Date {  get; set; }
         public decimal Duration { get; set; }   
 
-
-
         public long PersonId { get; set; }  
         public Person Person { get; set; }
         
@@ -23,9 +21,5 @@ namespace Swd.TimeManager.Model
 
         public long TaskId { get; set; }
         public Task Task { get; set; }
-
-
-
-
     }
 }

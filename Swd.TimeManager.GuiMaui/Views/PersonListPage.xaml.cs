@@ -1,4 +1,5 @@
 using Swd.TimeManager.GuiMaui.ViewModel;
+using Swd.TimeManager.GuiMaui.Model;
 
 namespace Swd.TimeManager.GuiMaui.Views;
 
@@ -7,25 +8,32 @@ public partial class PersonListPage : ContentPage
 	public PersonListPage()
 	{
 		InitializeComponent();
-		LoadProjectsAsync();
+        //LoadPersonsAsync();
 
-    }
+	}
 
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
-		LoadProjectsAsync();
+        LoadPersonsAsync();
     }
 
 
-    private async Task LoadProjectsAsync()
-	{
-		var viewModel = (ProjectListViewModel)BindingContext;
-		await viewModel.LoadProjectsAsync();
-		await MainThread.InvokeOnMainThreadAsync(() =>
-			((ListView)Content).ItemsSource = viewModel.ProjectList
-			);
-	}
+
+
+    private async void LoadPersonsAsync()
+    {
+        var viewModel = (PersonListPageViewModel)BindingContext;
+        await viewModel.LoadPersonAsync();
+
+        await MainThread.InvokeOnMainThreadAsync(() =>
+        {
+            BindingContext = null;
+            BindingContext = viewModel;
+        });
+    }
+
+
 
 }

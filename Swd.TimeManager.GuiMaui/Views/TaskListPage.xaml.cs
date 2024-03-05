@@ -7,7 +7,7 @@ public partial class TaskListPage : ContentPage
 	public TaskListPage()
 	{
 		InitializeComponent();
-		LoadProjectsAsync();
+        LoadTasksAsync();
 
     }
 
@@ -15,16 +15,16 @@ public partial class TaskListPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-		LoadProjectsAsync();
+        LoadTasksAsync();
     }
 
 
-    private async Task LoadProjectsAsync()
+    private async Task LoadTasksAsync()
 	{
-		var viewModel = (ProjectListViewModel)BindingContext;
-		await viewModel.LoadProjectsAsync();
+		var viewModel = (TaskListPageViewModel)BindingContext;
+		await viewModel.LoadTasksAsync();
 		await MainThread.InvokeOnMainThreadAsync(() =>
-			((ListView)Content).ItemsSource = viewModel.ProjectList
+			((ListView)Content).ItemsSource = viewModel.TaskList
 			);
 	}
 

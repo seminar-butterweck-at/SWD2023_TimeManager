@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Swd.TimeManager.GuiMaui.Views.PersonAddPage"
+             xmlns:local="clr-namespace:Swd.TimeManager.GuiMaui.ViewModel"
+             Title="Add Person">
+    <ContentPage.BindingContext>
+        <local:PersonAddPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Text="Lastname" Margin="5"/>
+            <Entry Grid.Row="1" Margin="5" Text="{Binding Person.LastName, Mode=TwoWay}" />
+            <Label Grid.Row="2" Text="Firstname" Margin="5"/>
+            <Entry Grid.Row="3" Margin="5" Text="{Binding Person.FirstName, Mode=TwoWay}" />
+            <Label Grid.Row="4" Text="E-Mail" Margin="5"/>
+            <Entry Grid.Row="5" Margin="5" Text="{Binding Person.Email, Mode=TwoWay}" />
+            <StackLayout Grid.Row="6" Orientation="Horizontal">
+                <Label Text="Entry Date" Margin="5"/>
+                <DatePicker  Margin="5" Date="{Binding Person.EntryDate, Mode=TwoWay}" />
+                <Label Text="Exit Date" Margin="5"/>
+                <DatePicker  Margin="5" Date="{Binding Person.ExitDate, Mode=TwoWay}" />
+            </StackLayout>
+        </Grid>
+        <Button Text="Save" Command="{Binding SaveCommand}" ImageSource="check.png"  />
+        <Button Text="Cancel" Command="{Binding CancelCommand}" ImageSource="cancel.png"  />
+
+    </VerticalStackLayout>
+</ContentPage>

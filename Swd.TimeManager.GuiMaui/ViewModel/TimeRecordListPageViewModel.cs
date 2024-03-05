@@ -9,20 +9,20 @@ using System.Windows.Input;
 
 namespace Swd.TimeManager.GuiMaui.ViewModel
 {
-    public class ProjectListViewModel: BaseViewModel
+    public class TimeRecordListPageViewModel : BaseViewModel
     {
         //Fields
         private TimeManagerDatabase _database;
-        private ObservableCollection<Project> _projectList;
+        private ObservableCollection<TimeRecord> _timeRecordList;
 
 
         //Properties
-        public ObservableCollection<Project> ProjectList
+        public ObservableCollection<TimeRecord> TimeRecordList
         {
-            get { return _projectList; }
+            get { return _timeRecordList; }
             set
             {
-                _projectList = value;
+                _timeRecordList = value;
                 OnPropertyChanged();
             }
         }
@@ -35,10 +35,10 @@ namespace Swd.TimeManager.GuiMaui.ViewModel
 
 
 
-        public ProjectListViewModel()
+        public TimeRecordListPageViewModel()
         {
             _database = new TimeManagerDatabase();
-            _projectList = new ObservableCollection<Project>();
+            _timeRecordList = new ObservableCollection<TimeRecord>();
 
             AddCommand = new Command(
                 () => Add(),
@@ -56,40 +56,39 @@ namespace Swd.TimeManager.GuiMaui.ViewModel
 
 
 
-        public async System.Threading.Tasks.Task LoadProjectsAsync()
+        public async System.Threading.Tasks.Task LoadTimeRecordsAsync()
         {
-            ProjectList = new ObservableCollection<Project>(await _database.GetProjectsAsync());
-
+            TimeRecordList = new ObservableCollection<TimeRecord>(await _database.GetTimeRecordsAsync());
         }
 
         public async System.Threading.Tasks.Task Add()
         {
-            await Shell.Current.GoToAsync("projectadd");
+            await Shell.Current.GoToAsync("timerecordadd");
         }
 
 
-        public async System.Threading.Tasks.Task Edit(object projectId)
+        public async System.Threading.Tasks.Task Edit(object timeRecordId)
         {
-            if(int.TryParse(projectId.ToString(), out int id))
+            if(int.TryParse(timeRecordId.ToString(), out int id))
             {
                 var navigationParameter = new Dictionary<string, object>
                 {
-                    {"projectId", id }
+                    {"timeRecordId", id }
                 };                    ;
-                await Shell.Current.GoToAsync("projectedit", navigationParameter);
+                await Shell.Current.GoToAsync("timerecordedit", navigationParameter);
             }
         }
 
 
-        public async System.Threading.Tasks.Task Delete(object projectId)
+        public async System.Threading.Tasks.Task Delete(object timeRecordId)
         {
-            if (int.TryParse(projectId.ToString(), out int id))
+            if (int.TryParse(timeRecordId.ToString(), out int id))
             {
                 var navigationParameter = new Dictionary<string, object>
                 {
-                    {"projectId", id }
+                    {"timeRecordId", id }
                 }; ;
-                await Shell.Current.GoToAsync("projectdelete", navigationParameter);
+                await Shell.Current.GoToAsync("timerecorddelete", navigationParameter);
             }
         }
 

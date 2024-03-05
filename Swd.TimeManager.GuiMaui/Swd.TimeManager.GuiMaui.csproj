@@ -94,6 +94,18 @@
 	  <Compile Update="Views\PersonListPage.xaml.cs">
 	    <DependentUpon>PersonListPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\TimeRecordEditPage.xaml.cs">
+	    <DependentUpon>TimeRecordEditPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TaskAddPage.xaml.cs">
+	    <DependentUpon>TaskAddPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TimeRecordAddPage.xaml.cs">
+	    <DependentUpon>TimeRecordAddPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TimeRecordListPage.xaml.cs">
+	    <DependentUpon>TimeRecordListPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\TaskListPage.xaml.cs">
 	    <DependentUpon>TaskListPage.xaml</DependentUpon>
 	  </Compile>
@@ -111,6 +123,18 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Views\PersonListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TimeRecordEditPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TaskAddPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TimeRecordAddPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TimeRecordListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\TaskListPage.xaml">

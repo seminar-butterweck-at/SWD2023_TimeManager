@@ -8,49 +8,38 @@ using System.Windows.Input;
 
 namespace Swd.TimeManager.GuiMaui.ViewModel
 {
-    [QueryProperty(nameof(ProjectId), "projectId")]
-    public class ProjectDeletePageViewModel : BaseViewModel
+    public class TaskAddPageViewModel : BaseViewModel
     {
 
         //Fields
-        private Project _project;
-        private int _projectId;
-        private TimeManagerDatabase _database;
+        private Model.Task _task;
 
 
         //Properties
-        public Project Project
+        public Model.Task Task
         {
-            get { return _project; }
+            get { return _task; }
             set
             {
-                _project = value;
+                _task = value;
                 OnPropertyChanged();
             }
         }
-
-        public int ProjectId
-        {
-            get { return _projectId; }
-            set
-            {
-                _projectId = value;
-                OnPropertyChanged();
-            }
-        }
+  
 
         //Commands
-        public ICommand DeleteCommand { get; set; }
+        public ICommand SaveCommand { get; set; }
         public ICommand CancelCommand { get; set; }
 
 
-        public ProjectDeletePageViewModel()
-        {
-            _database = new TimeManagerDatabase();
 
-            DeleteCommand = new Command(
+        public TaskAddPageViewModel()
+        {
+            Task = new Model.Task();
+
+            SaveCommand = new Command(
                 //Execute: Methode die aufgerufen wird
-                () => Delete(),
+                () => Save(),
                 //Can Execute: Methode die true/false zurücklieft
                 () => IsActionPossible()
                 );
@@ -60,24 +49,20 @@ namespace Swd.TimeManager.GuiMaui.ViewModel
                 //Can Execute: Methode die true/false zurücklieft
                 () => IsActionPossible()
                 );
-
         }
 
-        public async System.Threading.Tasks.Task Delete()
+
+
+        public async System.Threading.Tasks.Task Save()
         {
             TimeManagerDatabase database = new TimeManagerDatabase();
-            await database.DeleteProjectAsync(this.Project);
+            await database.SaveTaskAsync(this.Task);
             await Shell.Current.GoToAsync("..");
         }
 
         public async System.Threading.Tasks.Task Cancel()
         {
             await Shell.Current.GoToAsync("..");
-        }
-
-        public async System.Threading.Tasks.Task LoadProjectAsync()
-        {
-            Project = await _database.GetProjectByIdAsync(ProjectId);
         }
 
 
@@ -87,6 +72,7 @@ namespace Swd.TimeManager.GuiMaui.ViewModel
 
             return isActionPossible;
         }
+
 
     }
 }

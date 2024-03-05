@@ -2,28 +2,24 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Swd.TimeManager.GuiMaui.Views.PersonListPage"
-             xmlns:viewmodel="clr-namespace:Swd.TimeManager.GuiMaui.ViewModel"
-             xmlns:res="clr-namespace:Swd.TimeManager.GuiMaui.Resources.Strings"
-             Title="{x:Static res:AppResources.PageTitlePersonList}">
+             xmlns:local="clr-namespace:Swd.TimeManager.GuiMaui.ViewModel"
+             Title="Persons">
 
-            <ContentPage.BindingContext>
-                <viewmodel:ProjectListViewModel/>
-            </ContentPage.BindingContext>
+    
+    <ContentPage.BindingContext>
+            <local:PersonListPageViewModel/>
+    </ContentPage.BindingContext>
 
-        <ContentPage.ToolbarItems>
-            <ToolbarItem Text="{x:Static res:AppResources.btnAdd}" Command="{Binding AddCommand}" IconImageSource="add.png" />
-        </ContentPage.ToolbarItems>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add person" IconImageSource="add.png" Command="{Binding AddCommand}" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
 
-
-        <ListView  x:Name="lstProjects" ItemsSource="{Binding ProjectList}" >
+    <ListView  x:Name="lstPersons" ItemsSource="{Binding PersonList}" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <ViewCell.ContextActions>
-                        <MenuItem Text="{x:Static res:AppResources.btnEdit}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProjectListViewModel}},Path=EditCommand}" CommandParameter="{Binding Id}" />
-                        <MenuItem Text="{x:Static res:AppResources.btnDelete}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProjectListViewModel}},Path=DeleteCommand}" CommandParameter="{Binding Id}" />
-                        </ViewCell.ContextActions>
-                        <Grid>
+                    <Grid Margin="20,5">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
@@ -31,20 +27,20 @@
                                 <ColumnDefinition Width="0" />
                                 <ColumnDefinition Width="50*" />
                                 <ColumnDefinition Width="75" />
-                                <ColumnDefinition Width="120"  />
-                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="150" />
                             </Grid.ColumnDefinitions>
-
+                            
                             <Label Grid.Row="0" Grid.Column="0" Text="{Binding Id}" IsVisible="false" />
-                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" />
-                            <!--<Button Grid.Row="0" Grid.Column="2" Text="Add" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProjectListViewModel}},Path=AddCommand}" />-->
-                        <Button Grid.Row="0" Grid.Column="3" MinimumWidthRequest="100" MaximumWidthRequest="120" ImageSource="edit.png" Text="{x:Static res:AppResources.btnEdit}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProjectListViewModel}},Path=EditCommand}" CommandParameter="{Binding Id}" />
-                        <Button Grid.Row="0" Grid.Column="4" MinimumWidthRequest="100" MaximumWidthRequest="120" ImageSource="delete.png" Text="{x:Static res:AppResources.btnDelete}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProjectListViewModel}},Path=DeleteCommand}" CommandParameter="{Binding Id}"/>
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding DisplayName}" />
+                            <!--<Button Grid.Row="0" Grid.Column="2" Text="Add" Command="{Binding Source={RelativeSource AncestorType={x:Type local:ProjectListPageViewModel}}, Path=AddCommand }" />-->
+                            <Button Grid.Row="0" Grid.Column="3" Text="Edit" ImageSource="edit.png" Command="{Binding Source={RelativeSource AncestorType={x:Type local:PersonListPageViewModel}}, Path=EditCommand }" CommandParameter="{Binding Id}"/>
+                            <Button Grid.Row="0" Grid.Column="4" Text="Delete" ImageSource="delete.png" Command="{Binding Source={RelativeSource AncestorType={x:Type local:PersonListPageViewModel}}, Path=DeleteCommand }" CommandParameter="{Binding Id}"/>
+
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
-
+    </ScrollView>
 </ContentPage>

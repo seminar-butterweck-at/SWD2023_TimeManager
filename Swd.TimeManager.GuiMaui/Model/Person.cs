@@ -1,4 +1,5 @@
-﻿using Swd.TimeManager.Model;
+﻿using SQLite;
+using Swd.TimeManager.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,10 +12,11 @@ namespace Swd.TimeManager.GuiMaui.Model
     public class Person: ModelBase
     {
 
+        [PrimaryKey, AutoIncrement]
         public long Id { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
-        public string DisplayName { get; }
+        public string DisplayName { get => string.Format("{0} {1}", LastName, FirstName); }
         public string Email { get; set; }
         public DateTime EntryDate { get; set; }
         public DateTime? ExitDate { get; set; }

@@ -65,7 +65,7 @@ namespace Swd.TimeManager.GuiMaui.ViewModel
 
 
 
-        public async Task Save()
+        public async System.Threading.Tasks.Task Save()
         {
             TimeManagerDatabase database = new TimeManagerDatabase();
             await database.SaveProjectAsync(this.Project);
@@ -73,7 +73,7 @@ namespace Swd.TimeManager.GuiMaui.ViewModel
         }
 
         
-        public async Task SetProjectToEdit()
+        public async System.Threading.Tasks.Task SetProjectToEdit()
         {
             TimeManagerDatabase database = new TimeManagerDatabase();
             Project = await database.GetProjectByIdAsync(SelectedProjectId);
