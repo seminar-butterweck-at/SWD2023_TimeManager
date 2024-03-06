@@ -125,6 +125,10 @@ namespace Swd.TimeManager.GuiMaui.ViewModel
         public async System.Threading.Tasks.Task Save()
         {
             TimeManagerDatabase database = new TimeManagerDatabase();
+            TimeRecord.ProjectId = SelectedProject.Id;
+            TimeRecord.PersonId = SelectedPerson.Id;
+            TimeRecord.TaskId = SelectedTask.Id;
+            
             await database.SaveTimeRecordAsync(this.TimeRecord);
             await Shell.Current.GoToAsync("..");
         }
@@ -134,13 +138,19 @@ namespace Swd.TimeManager.GuiMaui.ViewModel
             await Shell.Current.GoToAsync("..");
         }
 
-        public async System.Threading.Tasks.Task LoadTimeRecordAsync()
+        public async System.Threading.Tasks.Task LoadAllDataAsync()
         {
             TimeRecord = await _database.GetTimeRecordByIdAsync(TimeRecordId);
-            this.SelectedPerson = await _database.GetPersonByIdAsync(Convert.ToInt32(TimeRecord.PersonId));
-            this.SelectedProject = await _database.GetProjectByIdAsync(Convert.ToInt32(TimeRecord.ProjectId));
-            this.SelectedTask = await _database.GetTaskByIdAsync(Convert.ToInt32(TimeRecord.TaskId));
+            
+            ProjectList = new ObservableCollection<Project>(await _database.GetProjectsAsync());
+            TaskList = new ObservableCollection<Model.Task>(await _database.GetTaskAsync());
+            PersonList = new ObservableCollection<Person>(await _database.GetPersonsAsync());
+
+            this.SelectedPerson = PersonList.Where(p => p.Id == TimeRecord.PersonId).FirstOrDefault(); 
+            this.SelectedProject = ProjectList.Where(p => p.Id == TimeRecord.ProjectId).FirstOrDefault();
+            this.SelectedTask = TaskList.Where(p => p.Id == TimeRecord.TaskId).FirstOrDefault();
         }
+
         public async System.Threading.Tasks.Task LoadProjectsAsync()
         {
             ProjectList = new ObservableCollection<Project>(await _database.GetProjectsAsync());

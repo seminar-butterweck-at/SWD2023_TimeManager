@@ -35,15 +35,15 @@
         <Label Grid.Row="2" Text="Duration" Margin="5"/>
         <Entry Grid.Row="3" Margin="5" Text="{Binding TimeRecord.Duration, Mode=TwoWay}" />
         <Label Grid.Row="4" Text="Project" Margin="5"/>
-        <Picker Grid.Row="5" Margin="5" ItemsSource="{Binding ProjectList}" SelectedItem="{Binding SelectedProject}" ItemDisplayBinding="{Binding Name}" />
+        <Picker Grid.Row="5" Margin="5" x:Name="lstProjects" ItemsSource="{Binding ProjectList}" SelectedItem="{Binding SelectedProject, Mode=TwoWay}" ItemDisplayBinding="{Binding Name}" />
         <Label Grid.Row="6" Text="Aufgabe" Margin="5"/>
         <Picker Grid.Row="7" Margin="5" ItemsSource="{Binding TaskList}" SelectedItem="{Binding SelectedTask}" ItemDisplayBinding="{Binding Name}" />
         <Label Grid.Row="8" Text="Person" Margin="5"/>
         <Picker Grid.Row="9" Margin="5" ItemsSource="{Binding PersonList}" SelectedItem="{Binding SelectedPerson}" ItemDisplayBinding="{Binding DisplayName}"/>
-        <Button  Grid.Row="10" Text="Save project" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProjectEditPageViewModel}}, Path=SaveCommand }"  />
-        <Button  Grid.Row="11" Text="Cancel" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProjectEditPageViewModel}}, Path=CancelCommand }"  />
-
-
+        <!--<Button  Grid.Row="10" Text="Save project" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProjectEditPageViewModel}}, Path=SaveCommand }"  />-->
+        <!--<Button  Grid.Row="11" Text="Cancel" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProjectEditPageViewModel}}, Path=CancelCommand }"  />-->
+        <Button  Grid.Row="10" Text="Save project" Command="{Binding SaveCommand }"  />
+        <Button  Grid.Row="11" Text="Cancel" Command="{Binding Path=CancelCommand }"  />
     </Grid>
 
 

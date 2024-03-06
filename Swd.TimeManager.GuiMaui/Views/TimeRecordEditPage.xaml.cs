@@ -22,9 +22,7 @@ public partial class TimeRecordEditPage : ContentPage
     private async Task LoadDataAsync()
     {
         var viewModel = (TimeRecordEditPageViewModel)BindingContext;
-        await viewModel.LoadTasksAsync();
-        await viewModel.LoadProjectsAsync();
-        await viewModel.LoadPersonsAsync();
+        await viewModel.LoadAllDataAsync();
         await MainThread.InvokeOnMainThreadAsync(() =>
         {
             this.BindingContext = null;
