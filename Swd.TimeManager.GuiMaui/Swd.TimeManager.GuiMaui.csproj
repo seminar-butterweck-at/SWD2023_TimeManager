@@ -94,6 +94,9 @@
 	  <Compile Update="Views\PersonListPage.xaml.cs">
 	    <DependentUpon>PersonListPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\SearchListPage.xaml.cs">
+	    <DependentUpon>SearchListPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\TimeRecordEditPage.xaml.cs">
 	    <DependentUpon>TimeRecordEditPage.xaml</DependentUpon>
 	  </Compile>
@@ -123,6 +126,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Views\PersonListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SearchListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\TimeRecordEditPage.xaml">

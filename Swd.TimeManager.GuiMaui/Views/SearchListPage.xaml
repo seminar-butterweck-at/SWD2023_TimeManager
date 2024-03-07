@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Swd.TimeManager.GuiMaui.Views.SearchListPage"
+             xmlns:viewmodel="clr-namespace:Swd.TimeManager.GuiMaui.ViewModel"
+             xmlns:res="clr-namespace:Swd.TimeManager.GuiMaui.Resources.Strings"
+             Title="Search">
+
+            <ContentPage.BindingContext>
+                <viewmodel:SearchListViewModel/>
+            </ContentPage.BindingContext>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <SearchBar Grid.Row="0"
+                   x:Name="txbSearch"
+                   Placeholder="Search for TimeRecords..."
+                   SearchCommand="{Binding SearchCommand}" 
+                   SearchCommandParameter="{Binding Text, Source={x:Reference txbSearch}} "
+                   />
+
+
+        <ListView Grid.Row="1"  x:Name="lstProjects" ItemsSource="{Binding ResultList}" >
+            <ListView.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="150"  />
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="120" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Text="" IsVisible="false" />
+                    <Label Grid.Row="0" Grid.Column="1" Text="Date" />
+                    <Label Grid.Row="0" Grid.Column="2" Text="Project" />
+                    <Label Grid.Row="0" Grid.Column="3" Text="Task" />
+                    <Label Grid.Row="0" Grid.Column="4" Text="Person" />
+                    <Label Grid.Row="0" Grid.Column="5" Text="Duration" HorizontalTextAlignment="End" />
+                </Grid>
+            </ListView.Header>            
+            <ListView.Footer>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="150"  />
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="120" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Text="" IsVisible="false" />
+                    <Label Grid.Row="0" Grid.Column="1" Text="" />
+                    <Label Grid.Row="0" Grid.Column="2" Text="" />
+                    <Label Grid.Row="0" Grid.Column="3" Text="" />
+                    <Label Grid.Row="0" Grid.Column="4" Text="Sum" />
+                    <Label Grid.Row="0" Grid.Column="5" Text="{Binding ResultSum, StringFormat='{0:#,##0.00}'}" HorizontalTextAlignment="End"/>
+                </Grid>
+            </ListView.Footer>
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="150"  />
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="120" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Id}" IsVisible="false" />
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Date, StringFormat='{0:ddd.M.yyyy}'}" />
+                            <Label Grid.Row="0" Grid.Column="2" Text="{Binding ProjectName}" />
+                            <Label Grid.Row="0" Grid.Column="3" Text="{Binding TaskName}" />
+                            <Label Grid.Row="0" Grid.Column="4" Text="{Binding PersonName}" />
+                            <Label Grid.Row="0" Grid.Column="5" Text="{Binding Duration, StringFormat='{0:#,##0.00}'}" HorizontalTextAlignment="End" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+            
+            
+        </ListView>
+
+    </Grid>
+    
+
+     
+
+
+</ContentPage>

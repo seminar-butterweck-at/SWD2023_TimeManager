@@ -141,7 +141,7 @@ namespace Swd.TimeManager.GuiMaui.ViewModel
         public async System.Threading.Tasks.Task LoadAllDataAsync()
         {
             TimeRecord = await _database.GetTimeRecordByIdAsync(TimeRecordId);
-            
+
             ProjectList = new ObservableCollection<Project>(await _database.GetProjectsAsync());
             TaskList = new ObservableCollection<Model.Task>(await _database.GetTaskAsync());
             PersonList = new ObservableCollection<Person>(await _database.GetPersonsAsync());

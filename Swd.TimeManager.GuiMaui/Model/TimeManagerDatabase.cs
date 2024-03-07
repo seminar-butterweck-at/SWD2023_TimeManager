@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using Swd.TimeManager.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -155,6 +156,35 @@ namespace Swd.TimeManager.GuiMaui.Model
             await Init();
             return await _database.DeleteAsync(task);
         }
+
+
+        public async Task<List<SearchResult>> GetSearchResultAsync(string searchValue)
+        {
+            await Init();
+
+            string sql = string.Empty;
+            sql += "SELECT ";
+            sql += "TimeRecord.Id as Id, ";
+            sql += "TimeRecord.Date as Date, ";
+            sql += "TimeRecord.ProjectId as ProjectId, ";
+            sql += "Project.Name as ProjectName, ";
+            sql += "TimeRecord.TaskId as TaskId, ";
+            sql += "Task.Name as TaskName, ";
+            sql += "TimeRecord.PersonId as PersonId, ";
+            sql += "Person.LastName || ' ' || Person.FirstName as PersonName, ";
+            sql += "TimeRecord.Duration as Duration ";
+            sql += "FROM TimeRecord ";
+            sql += "INNER JOIN Project ON TimeRecord.ProjectId = Project.Id ";
+            sql += "INNER JOIN Person ON TimeRecord.PersonId = Person.Id ";
+            sql += "INNER JOIN Task ON TimeRecord.TaskId = Person.Id ";
+            sql += "WHERE Project.Name like '%" + searchValue + "%' ";
+            sql += "ORDER BY Project.Name, TimeRecord.Date";
+
+            var result = await _database.QueryAsync<SearchResult>(sql);
+            return result.ToList();
+
+        }
+
 
     }
 }
