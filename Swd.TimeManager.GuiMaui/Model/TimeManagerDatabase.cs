@@ -177,10 +177,13 @@ namespace Swd.TimeManager.GuiMaui.Model
             sql += "INNER JOIN Project ON TimeRecord.ProjectId = Project.Id ";
             sql += "INNER JOIN Person ON TimeRecord.PersonId = Person.Id ";
             sql += "INNER JOIN Task ON TimeRecord.TaskId = Person.Id ";
-            sql += "WHERE Project.Name like '%" + searchValue + "%' ";
+            //sql += "WHERE Project.Name like '%" + searchValue + "%' "; => Achtung SQL Injection
+            sql += "WHERE Project.Name like ? ";
             sql += "ORDER BY Project.Name, TimeRecord.Date";
 
-            var result = await _database.QueryAsync<SearchResult>(sql);
+            string adaptedSearchValue = $"%{searchValue}%";
+
+            var result = await _database.QueryAsync<SearchResult>(sql, adaptedSearchValue );
             return result.ToList();
 
         }

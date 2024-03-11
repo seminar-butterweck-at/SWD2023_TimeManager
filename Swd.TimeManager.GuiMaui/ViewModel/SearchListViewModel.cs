@@ -76,6 +76,7 @@ namespace Swd.TimeManager.GuiMaui.ViewModel
             ObservableCollection<SearchResult> resultList =
                 new ObservableCollection<SearchResult>(await _database.GetSearchResultAsync(SearchValue));
             ResultList = resultList;
+
             ResultSum = ResultList.Sum(r => r.Duration);
         }
 

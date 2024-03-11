@@ -23,12 +23,12 @@ public partial class TimeRecordEditPage : ContentPage
     {
         var viewModel = (TimeRecordEditPageViewModel)BindingContext;
         await viewModel.LoadAllDataAsync();
-        await MainThread.InvokeOnMainThreadAsync(() =>
-        {
-            this.BindingContext = null;
-            this.BindingContext = viewModel;
-        }
-        );
+        //await MainThread.InvokeOnMainThreadAsync(() =>
+        //{
+        //    //this.BindingContext = null;
+        //    //this.BindingContext = viewModel;
+        //}
+        //);
         
     }
 }
