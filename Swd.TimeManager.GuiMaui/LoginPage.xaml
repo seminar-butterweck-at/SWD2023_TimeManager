@@ -34,12 +34,12 @@
                     ValidStyle="{StaticResource ValidEntryStyle}"
                     Flags="ValidateOnValueChanged"
                     />
-                <toolkit:TextValidationBehavior
+                <!--<toolkit:TextValidationBehavior
                     InvalidStyle="{StaticResource InvalidEntryStyle}"
                     ValidStyle="{StaticResource ValidEntryStyle}"
                     MinimumLength="4"
                     MaximumLength="25"
-                    Flags="ValidateOnValueChanged" />
+                    Flags="ValidateOnValueChanged" />-->
             </Entry.Behaviors>
         </Entry>
 

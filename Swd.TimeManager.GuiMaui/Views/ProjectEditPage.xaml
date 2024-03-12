@@ -19,7 +19,7 @@
                 <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
             
-         <Label Grid.Row="0" Text="Projektname" Margin="5"/>
+         <Label Grid.Row="0" Text="{Binding Project.Name}" Margin="5"/>
          <Entry Grid.Row="1" Margin="5" Text="{Binding Name, Mode=TwoWay}" />
         <Button  Grid.Row="2" Text="Save project" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProjectEditPageViewModel}}, Path=SaveCommand }"  />
         <Button  Grid.Row="3" Text="Cancel" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProjectEditPageViewModel}}, Path=CancelCommand }"  />

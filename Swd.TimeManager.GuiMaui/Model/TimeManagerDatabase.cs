@@ -1,9 +1,11 @@
-﻿using SQLite;
+﻿using Microsoft.Maui.Controls;
+using SQLite;
 using Swd.TimeManager.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 
@@ -185,6 +187,57 @@ namespace Swd.TimeManager.GuiMaui.Model
 
             var result = await _database.QueryAsync<SearchResult>(sql, adaptedSearchValue );
             return result.ToList();
+
+        }
+
+
+        public async Task<List<OverViewData>> GetOverViewDataAsync()
+        {
+            await Init();
+
+            //OverViewData ov1 = new OverViewData { ProjectId = 1, ProjectName = "Project 1", Duration = 60.0M };
+            //OverViewData ov2 = new OverViewData { ProjectId = 2, ProjectName = "Project 2", Duration = 100.25M };
+            //OverViewData ov3 = new OverViewData { ProjectId = 3, ProjectName = "Project 3", Duration = 5.0M };
+            //OverViewData ov4 = new OverViewData { ProjectId = 4, ProjectName = "Project 4", Duration = 12.0M };
+
+            //List<OverViewData> l = new List<OverViewData>();
+            //l.Add(ov1 );
+            //l.Add(ov2); 
+            //l.Add(ov3); 
+            //l.Add(ov4);
+
+            //1. Project aus Datenbank lesen
+            //2. Zu jedem Projekt alle Tasks mit Summen lesen
+            //3. Overviewdata um Liste mit den Taskinformationen (Taskname, Stunden) erweitern
+            //4. Gesamtstundenanzahl berechnen und in OverViewData Duration speichern.
+
+
+            List<OverViewData> overViewDataList = new List<OverViewData>();
+
+            string sql = string.Empty;
+            sql += "SELECT Id as ProjectId, Name as ProjectName from Project ";
+            var projectList = await _database.QueryAsync<SearchResult>(sql);
+            foreach ( var item in projectList )
+            {
+                string taskSql = string.Empty;
+                taskSql += "SELECT Task.Name as Name, Sum(TimeRecord.Duration) as Duration ";
+                taskSql += "FROM TimeRecord ";
+                taskSql += "INNER JOIN Task ON TimeRecord.TaskId = Task.Id ";
+                taskSql += "GROUP BY TimeRecord.ProjectId, Task.Name ";
+                taskSql += "HAVING(TimeRecord.ProjectId = ?) ";
+
+                var taskList = await _database.QueryAsync<OverViewTaskData>(taskSql, item.ProjectId);
+                var sumDuration = taskList.Sum(x => x.Duration);
+
+
+                OverViewData ovwData = new OverViewData();
+                ovwData.ProjectId = item.ProjectId;
+                ovwData.ProjectName = item.ProjectName;
+                ovwData.Duration = sumDuration;
+                ovwData.Tasks = taskList.ToList();
+                overViewDataList.Add(ovwData);    
+            }
+            return overViewDataList;
 
         }
 

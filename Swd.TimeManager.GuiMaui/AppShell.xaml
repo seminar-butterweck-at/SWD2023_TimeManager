@@ -12,7 +12,7 @@
 
     <TabBar>
         <Tab Title="{x:Static res:AppResources.MenTitleOverview}">
-            <ShellContent ContentTemplate="{DataTemplate views:OverViewPage}" />
+            <ShellContent ContentTemplate="{DataTemplate vw:OverViewPage}" />
         </Tab>
         <Tab Title="Search">
             <ShellContent ContentTemplate="{DataTemplate vw:SearchListPage}" />

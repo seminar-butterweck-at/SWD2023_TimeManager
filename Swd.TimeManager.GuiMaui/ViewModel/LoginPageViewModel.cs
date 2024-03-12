@@ -40,8 +40,8 @@ namespace Swd.TimeManager.GuiMaui.ViewModel
         }
 
         [Required(ErrorMessage = "Password is a required field!")]
-        [MinLength(8,ErrorMessage = "Minimum length is 5 characters!")]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8}$", ErrorMessage ="Password is not complex enough!")]
+        [MinLength(8,ErrorMessage = "Minimum length is 8 characters!")]
+        //[RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8}$", ErrorMessage ="Password is not complex enough!")]
         [IsEmailPasswordEqual(nameof(Username))]
         public string Password
         {
